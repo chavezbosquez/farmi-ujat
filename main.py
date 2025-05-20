@@ -1,6 +1,13 @@
 import flet as ft
+import consulta_airtable as cat
 
 def main(page: ft.Page):
+
+    def mostrar_interacciones(e: ft.ControlEvent):
+        page.clean()
+        cat.main(page)
+        
+
     page.title = "FARMI-UJAT"
     page.appbar = ft.AppBar(
         title=ft.Text("FARMI-UJAT", size=40),
@@ -23,10 +30,13 @@ def main(page: ft.Page):
         ),
         bgcolor="orange100",
         color="black",
-        width=200
+        width=200,
+        on_click=mostrar_interacciones
     )
     page.add( ft.Divider(color="black") )
     page.add(btn_interacciones)
     page.update()
 
-ft.app(target=main, view=ft.AppView.WEB_BROWSER)
+
+if __name__ == "__main__":
+    ft.app(target=main, view=ft.AppView.WEB_BROWSER)
